@@ -1,955 +1,1179 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Material para la Enseñanza</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>Material para la Enseñanza</title>
 
-/* =========================================================
-   CONFIGURACIÓN GENERAL
-========================================================= */
+    <style>
 
-:root {
-    --fondo: #05080b;
-    --panel: #0a1016;
-    --panel2: #0d151d;
-    --borde: #26313b;
-    --texto: #ffffff;
-    --texto2: #aab6c3;
-    --azul: #168bff;
-    --azul2: #006acb;
-    --sidebar: 270px;
-    --header: 82px;
-}
+        /* =====================================================
+           CONFIGURACIÓN GENERAL
+        ===================================================== */
 
-* {
-    box-sizing: border-box;
-}
+        :root {
+            --fondo: #05080b;
+            --panel: #0a1016;
+            --panel2: #0d151d;
+            --borde: #26313b;
+            --texto: #ffffff;
+            --texto-secundario: #aab6c3;
+            --azul: #168bff;
+            --azul-oscuro: #006acb;
 
-html, body {
-    margin: 0;
-    height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--fondo);
-    color: var(--texto);
-}
+            --sidebar: 270px;
+            --header: 82px;
+        }
 
-button,
-input {
-    font-family: inherit;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-button {
-    color: inherit;
-}
+        html,
+        body {
+            margin: 0;
+            height: 100%;
 
-/* =========================================================
-   CABECERA FIJA
-========================================================= */
+            background: var(--fondo);
+            color: var(--texto);
 
-.header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-    height: var(--header);
+        button,
+        input {
+            font-family: inherit;
+        }
 
-    background: rgba(3, 7, 10, 0.97);
-    border-bottom: 1px solid var(--borde);
+        button {
+            color: inherit;
+        }
 
-    display: grid;
-    grid-template-columns: var(--sidebar) 1fr auto;
-    align-items: center;
 
-    z-index: 1000;
-}
+        /* =====================================================
+           CABECERA FIJA
+        ===================================================== */
 
-.marca {
-    height: 100%;
+        .header {
+            position: fixed;
 
-    display: flex;
-    align-items: center;
+            top: 0;
+            left: 0;
+            right: 0;
 
-    padding: 0 24px;
+            height: var(--header);
 
-    border-right: 1px solid var(--borde);
-}
+            background: rgba(3, 7, 10, 0.98);
 
-.logo {
-    font-size: 36px;
-    margin-right: 12px;
-}
+            border-bottom: 1px solid var(--borde);
 
-.marca h1 {
-    margin: 0;
-    font-size: 21px;
-}
+            display: grid;
 
-.marca small {
-    display: block;
+            grid-template-columns:
+                var(--sidebar)
+                1fr
+                auto;
 
-    color: #7f9bb4;
+            align-items: center;
 
-    font-size: 11px;
-    letter-spacing: 1.5px;
+            z-index: 1000;
+        }
 
-    margin-top: 5px;
-}
 
-.buscador {
-    display: flex;
-    justify-content: center;
+        /* =====================================================
+           MARCA
+        ===================================================== */
 
-    padding: 0 35px;
-}
+        .marca {
+            height: 100%;
 
-.caja-busqueda {
-    width: min(650px, 100%);
-    height: 45px;
+            display: flex;
+            align-items: center;
 
-    border: 1px solid #394956;
-    border-radius: 9px;
+            padding: 0 22px;
 
-    background: #0e151b;
+            border-right: 1px solid var(--borde);
+        }
 
-    display: flex;
-    align-items: center;
+        .logo {
+            font-size: 34px;
+            margin-right: 12px;
+        }
 
-    padding: 0 16px;
-}
+        .marca h1 {
+            margin: 0;
 
-.caja-busqueda span {
-    font-size: 20px;
-    margin-right: 12px;
-}
+            font-size: 20px;
+            line-height: 1.1;
+        }
 
-.caja-busqueda input {
-    flex: 1;
+        .marca small {
+            display: block;
 
-    border: 0;
-    outline: 0;
+            margin-top: 6px;
 
-    background: transparent;
-    color: white;
+            color: #7f9bb4;
 
-    font-size: 15px;
-}
+            font-size: 10px;
 
-.caja-busqueda input::placeholder {
-    color: #8493a0;
-}
+            letter-spacing: 1.4px;
+        }
 
-.usuario {
-    height: 100%;
 
-    display: flex;
-    align-items: center;
-    gap: 12px;
+        /* =====================================================
+           BUSCADOR
+        ===================================================== */
 
-    padding: 0 25px;
+        .buscador {
+            display: flex;
+            justify-content: center;
 
-    border-left: 1px solid var(--borde);
-}
+            padding: 0 35px;
+        }
 
-.avatar {
-    width: 36px;
-    height: 36px;
+        .caja-busqueda {
+            width: min(650px, 100%);
 
-    display: grid;
-    place-items: center;
+            height: 45px;
 
-    border-radius: 50%;
+            border: 1px solid #394956;
+            border-radius: 9px;
 
-    background: var(--azul);
-}
+            background: #0e151b;
 
-/* =========================================================
-   SIDEBAR FIJA
-========================================================= */
+            display: flex;
+            align-items: center;
 
-.sidebar {
-    position: fixed;
+            padding: 0 16px;
+        }
 
-    top: var(--header);
-    bottom: 0;
-    left: 0;
+        .caja-busqueda span {
+            font-size: 20px;
 
-    width: var(--sidebar);
+            margin-right: 12px;
+        }
 
-    background: #060b10;
+        .caja-busqueda input {
+            flex: 1;
 
-    border-right: 1px solid var(--borde);
+            border: 0;
+            outline: 0;
 
-    overflow-y: auto;
+            background: transparent;
+            color: white;
 
-    padding: 20px 15px 40px;
+            font-size: 15px;
+        }
 
-    z-index: 900;
-}
+        .caja-busqueda input::placeholder {
+            color: #8493a0;
+        }
 
-.sidebar::-webkit-scrollbar {
-    width: 5px;
-}
 
-.sidebar::-webkit-scrollbar-thumb {
-    background: #263645;
-    border-radius: 5px;
-}
+        /* =====================================================
+           USUARIO
+        ===================================================== */
 
-.menu-titulo {
-    margin: 24px 12px 10px;
+        .usuario {
+            height: 100%;
 
-    color: #8195a8;
+            display: flex;
+            align-items: center;
 
-    font-size: 12px;
-    letter-spacing: 1.2px;
-}
+            gap: 12px;
 
-.menu-item,
-.asignatura-btn {
-    width: 100%;
+            padding: 0 25px;
 
-    border: 0;
-    border-radius: 7px;
+            border-left: 1px solid var(--borde);
+        }
 
-    background: transparent;
+        .avatar {
+            width: 36px;
+            height: 36px;
 
-    display: flex;
-    align-items: center;
+            display: grid;
+            place-items: center;
 
-    padding: 12px 13px;
+            border-radius: 50%;
 
-    cursor: pointer;
+            background: var(--azul);
+        }
 
-    font-size: 14px;
 
-    transition: 0.2s;
-}
+        /* =====================================================
+           MENÚ LATERAL FIJO
+        ===================================================== */
 
-.menu-item:hover,
-.asignatura-btn:hover {
-    background: #101b24;
-}
+        .sidebar {
+            position: fixed;
 
-.menu-item.activo {
-    background: linear-gradient(90deg, #0b65b5, #0b3b62);
-}
+            top: var(--header);
+            bottom: 0;
+            left: 0;
 
-.icono {
-    width: 28px;
-    font-size: 18px;
-}
+            width: var(--sidebar);
 
-.nombre {
-    flex: 1;
-    text-align: left;
-}
+            background: #060b10;
 
-.anio {
-    color: #b7c5d0;
-    margin-right: 10px;
-}
+            border-right: 1px solid var(--borde);
 
-.flecha {
-    color: #8796a3;
-    transition: transform 0.25s;
-}
+            overflow-y: auto;
 
-/* =========================================================
-   SUBMENÚ MESES
-========================================================= */
+            padding: 20px 15px 40px;
 
-.meses {
-    display: none;
+            z-index: 900;
+        }
 
-    margin-left: 40px;
-    padding: 4px 0 8px;
+        .sidebar::-webkit-scrollbar {
+            width: 5px;
+        }
 
-    border-left: 1px solid #31414e;
-}
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #263645;
 
-.meses.abierto {
-    display: block;
-}
+            border-radius: 5px;
+        }
 
-.mes {
-    display: block;
+        .menu-titulo {
+            margin: 24px 12px 10px;
 
-    width: 100%;
+            color: #8195a8;
 
-    border: 0;
+            font-size: 12px;
 
-    background: transparent;
+            letter-spacing: 1.2px;
+        }
 
-    color: #8fa0ae;
 
-    text-align: left;
+        /* =====================================================
+           BOTONES DEL MENÚ
+        ===================================================== */
 
-    padding: 8px 14px;
+        .menu-item,
+        .asignatura-btn {
+            width: 100%;
 
-    cursor: pointer;
+            border: 0;
+            border-radius: 7px;
 
-    font-size: 13px;
-}
+            background: transparent;
 
-.mes:hover {
-    color: white;
-    background: #0c151d;
-}
+            display: flex;
+            align-items: center;
 
-.separador {
-    height: 1px;
+            padding: 12px 13px;
 
-    background: var(--borde);
+            cursor: pointer;
 
-    margin: 18px 8px;
-}
+            font-size: 14px;
 
-/* =========================================================
-   ÁREA PRINCIPAL
-   SOLO ESTA ÁREA SE DESPLAZA
-========================================================= */
+            transition: 0.2s;
+        }
 
-.main {
-    position: fixed;
+        .menu-item:hover,
+        .asignatura-btn:hover {
+            background: #101b24;
+        }
 
-    top: var(--header);
-    left: var(--sidebar);
-    right: 0;
-    bottom: 0;
+        .menu-item.activo {
+            background:
+                linear-gradient(
+                    90deg,
+                    #0b65b5,
+                    #0b3b62
+                );
+        }
 
-    overflow-y: auto;
-    overflow-x: hidden;
+        .icono {
+            width: 28px;
 
-    background:
-        radial-gradient(circle at 75% 0%, #0a2334 0, transparent 28%),
-        var(--fondo);
-}
+            font-size: 18px;
+        }
 
-.contenido {
-    max-width: 1500px;
+        .nombre {
+            flex: 1;
 
-    margin: auto;
+            text-align: left;
+        }
 
-    padding: 26px 30px 50px;
-}
+        .anio {
+            color: #b7c5d0;
 
-/* =========================================================
-   MIGAS DE PAN
-========================================================= */
+            margin-right: 10px;
+        }
 
-.breadcrumb {
-    color: var(--azul);
+        .flecha {
+            color: #8796a3;
 
-    font-size: 13px;
+            transition: transform 0.25s;
+        }
 
-    margin-bottom: 22px;
-}
 
-/* =========================================================
-   HERO / BIENVENIDA
-========================================================= */
+        /* =====================================================
+           SUBMENÚ DE MESES
+        ===================================================== */
 
-.hero {
-    position: relative;
+        .meses {
+            display: none;
 
-    min-height: 300px;
+            margin-left: 40px;
 
-    overflow: hidden;
+            padding: 4px 0 8px;
 
-    border-bottom: 1px solid var(--borde);
+            border-left: 1px solid #31414e;
+        }
 
-    display: grid;
-    grid-template-columns: 43% 57%;
+        .meses.abierto {
+            display: block;
+        }
 
-    background:
-        linear-gradient(90deg,
-        rgba(5,8,11,1) 0%,
-        rgba(5,8,11,.93) 35%,
-        rgba(5,8,11,.35) 70%,
-        rgba(5,8,11,.1) 100%),
-        radial-gradient(circle at 75% 55%, #0b466a, #06121b 45%, #05080b 75%);
-}
+        .mes {
+            display: block;
 
-/*
-=========================================================
-PENDIENTE:
-Aquí posteriormente pondremos como background-image
-la imagen de los dos estudiantes observando el plano.
+            width: 100%;
 
-Ejemplo:
+            border: 0;
 
-background-image:
-linear-gradient(...),
-url("img/estudiantes-electricidad.webp");
-=========================================================
-*/
+            background: transparent;
 
-.hero-texto {
-    position: relative;
+            color: #8fa0ae;
 
-    z-index: 2;
+            text-align: left;
 
-    padding: 25px 0;
-}
+            padding: 8px 14px;
 
-.hero h2 {
-    font-size: clamp(32px, 4vw, 48px);
+            cursor: pointer;
 
-    margin: 0 0 4px;
-}
+            font-size: 13px;
+        }
 
-.hero h3 {
-    margin: 0;
+        .mes:hover {
+            color: white;
 
-    font-size: clamp(20px, 2vw, 29px);
+            background: #0c151d;
+        }
 
-    font-weight: normal;
+        .mes.seleccionado {
+            color: var(--azul);
 
-    color: #d8e1e8;
-}
+            border-left: 2px solid var(--azul);
 
-.hero p {
-    max-width: 590px;
+            background: #0b1720;
+        }
 
-    color: var(--texto2);
+        .separador {
+            height: 1px;
 
-    line-height: 1.7;
+            background: var(--borde);
 
-    font-size: 15px;
-}
+            margin: 18px 8px;
+        }
 
-.caracteristicas {
-    display: flex;
 
-    gap: 35px;
+        /* =====================================================
+           ÁREA PRINCIPAL
+           SOLO ESTA ZONA SE DESPLAZA
+        ===================================================== */
 
-    margin-top: 30px;
+        .main {
+            position: fixed;
 
-    color: #c9d5de;
+            top: var(--header);
+            left: var(--sidebar);
+            right: 0;
+            bottom: 0;
 
-    font-size: 13px;
-}
+            overflow-y: auto;
+            overflow-x: hidden;
 
-.caracteristica {
-    text-align: center;
-}
+            background:
+                radial-gradient(
+                    circle at 75% 0%,
+                    #0a2334 0,
+                    transparent 28%
+                ),
+                var(--fondo);
+        }
 
-.caracteristica .ico {
-    display: block;
+        .contenido {
+            max-width: 1500px;
 
-    color: var(--azul);
+            margin: auto;
 
-    font-size: 27px;
+            padding: 26px 30px 50px;
+        }
 
-    margin-bottom: 7px;
-}
 
-.hero-visual {
-    display: flex;
+        /* =====================================================
+           MIGAS DE PAN
+        ===================================================== */
 
-    align-items: center;
-    justify-content: center;
+        .breadcrumb {
+            color: var(--azul);
 
-    color: #163a51;
+            font-size: 13px;
 
-    font-size: 120px;
+            margin-bottom: 18px;
+        }
 
-    user-select: none;
-}
 
-/* =========================================================
-   TÍTULOS
-========================================================= */
+        /* =====================================================
+           HERO / BANNER PRINCIPAL
 
-.seccion-titulo {
-    margin: 20px 0 10px;
+           IMAGEN:
+           estudiantes-electricidad.png
+        ===================================================== */
 
-    font-size: 18px;
-}
+        .hero {
+            position: relative;
 
-/* =========================================================
-   ACCESOS RÁPIDOS
-========================================================= */
+            min-height: 310px;
 
-.accesos {
-    display: grid;
+            overflow: hidden;
 
-    grid-template-columns: repeat(5, 1fr);
+            border: 1px solid #263744;
+            border-radius: 10px;
 
-    gap: 12px;
-}
+            display: grid;
 
-.tarjeta {
-    min-height: 130px;
+            grid-template-columns:
+                46% 54%;
 
-    border: 1px solid #33424e;
-    border-radius: 9px;
+            background-image:
 
-    background: linear-gradient(145deg, #0c141b, #080e13);
+                linear-gradient(
+                    90deg,
 
-    padding: 20px;
+                    rgba(5, 8, 11, 1) 0%,
 
-    display: flex;
-    flex-direction: column;
+                    rgba(5, 8, 11, 0.98) 20%,
 
-    align-items: center;
-    justify-content: center;
+                    rgba(5, 8, 11, 0.90) 35%,
 
-    text-align: center;
+                    rgba(5, 8, 11, 0.55) 52%,
 
-    cursor: pointer;
+                    rgba(5, 8, 11, 0.10) 75%,
 
-    transition:
-        transform .2s,
-        border-color .2s,
-        background .2s;
-}
+                    rgba(5, 8, 11, 0.02) 100%
+                ),
 
-.tarjeta:hover {
-    transform: translateY(-3px);
+                url("estudiantes-electricidad.png");
 
-    border-color: var(--azul);
+            background-size: cover;
 
-    background: #0d1b26;
-}
+            background-position: center;
 
-.tarjeta.destacada {
-    background: linear-gradient(145deg, #0872cf, #064e8c);
+            background-repeat: no-repeat;
+        }
 
-    border-color: #1598ff;
-}
 
-.tarjeta .tarjeta-icono {
-    font-size: 31px;
+        /* Oscurecimiento inferior sutil */
 
-    margin-bottom: 13px;
-}
+        .hero::after {
+            content: "";
 
-.tarjeta strong {
-    font-size: 15px;
-}
+            position: absolute;
 
-.tarjeta small {
-    color: #a8b5c0;
+            left: 0;
+            right: 0;
+            bottom: 0;
 
-    margin-top: 6px;
+            height: 70px;
 
-    line-height: 1.4;
-}
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(5, 8, 11, 0.75)
+                );
 
-/* =========================================================
-   PANEL INFERIOR
-========================================================= */
+            pointer-events: none;
+        }
 
-.dashboard {
-    display: grid;
 
-    grid-template-columns: 1fr 1fr;
+        /* =====================================================
+           TEXTO DEL HERO
+        ===================================================== */
 
-    gap: 16px;
+        .hero-texto {
+            position: relative;
 
-    margin-top: 16px;
-}
+            z-index: 2;
 
-.panel {
-    border: 1px solid #273641;
-    border-radius: 10px;
+            padding: 35px 0 30px 28px;
+        }
 
-    background: #080e13;
+        .hero h2 {
+            font-size:
+                clamp(
+                    32px,
+                    4vw,
+                    48px
+                );
 
-    overflow: hidden;
-}
+            margin: 0 0 4px;
+        }
 
-.panel-cabecera {
-    display: flex;
+        .hero h3 {
+            margin: 0;
 
-    justify-content: space-between;
-    align-items: center;
+            font-size:
+                clamp(
+                    20px,
+                    2vw,
+                    29px
+                );
 
-    padding: 15px 18px;
+            font-weight: normal;
 
-    border-bottom: 1px solid #202c35;
-}
+            color: #d8e1e8;
+        }
 
-.panel-cabecera h3 {
-    margin: 0;
+        .hero p {
+            max-width: 560px;
 
-    font-size: 17px;
-}
+            color: var(--texto-secundario);
 
-.panel-cabecera a {
-    color: var(--azul);
+            line-height: 1.7;
 
-    font-size: 13px;
+            font-size: 15px;
+        }
 
-    cursor: pointer;
-}
 
-/* =========================================================
-   ÚLTIMAS ACTUALIZACIONES
-========================================================= */
+        /* =====================================================
+           CARACTERÍSTICAS
+        ===================================================== */
 
-.actualizacion {
-    display: grid;
+        .caracteristicas {
+            display: flex;
 
-    grid-template-columns: 42px 1fr auto;
+            gap: 35px;
 
-    gap: 12px;
+            margin-top: 28px;
 
-    align-items: center;
+            color: #c9d5de;
 
-    padding: 10px 18px;
+            font-size: 13px;
+        }
 
-    border-bottom: 1px solid #1b252d;
-}
+        .caracteristica {
+            text-align: center;
+        }
 
-.actualizacion:last-child {
-    border-bottom: 0;
-}
+        .caracteristica .ico {
+            display: block;
 
-.tipo {
-    width: 37px;
-    height: 37px;
+            color: var(--azul);
 
-    border-radius: 6px;
+            font-size: 27px;
 
-    display: grid;
-    place-items: center;
+            margin-bottom: 7px;
+        }
 
-    font-size: 11px;
-    font-weight: bold;
-}
+        .hero-visual {
+            min-height: 300px;
+        }
 
-.pdf {
-    background: #d83333;
-}
 
-.ppt {
-    background: #1378c8;
-}
+        /* =====================================================
+           TÍTULOS
+        ===================================================== */
 
-.xls {
-    background: #198b5b;
-}
+        .seccion-titulo {
+            margin: 22px 0 12px;
 
-.link {
-    background: #6e3bd1;
-}
+            font-size: 18px;
+        }
 
-.archivo {
-    font-size: 13px;
-}
 
-.archivo small {
-    display: block;
+        /* =====================================================
+           ACCESOS RÁPIDOS
+        ===================================================== */
 
-    color: #80919f;
+        .accesos {
+            display: grid;
 
-    margin-top: 3px;
-}
+            grid-template-columns:
+                repeat(5, 1fr);
 
-.fecha {
-    color: #9aa9b5;
+            gap: 12px;
+        }
 
-    font-size: 11px;
-}
+        .tarjeta {
+            min-height: 130px;
 
-/* =========================================================
-   CONTINUAR APRENDIENDO
-========================================================= */
+            border: 1px solid #33424e;
 
-.continuar {
-    padding: 17px;
+            border-radius: 9px;
 
-    display: grid;
+            background:
+                linear-gradient(
+                    145deg,
+                    #0c141b,
+                    #080e13
+                );
 
-    grid-template-columns: 100px 1fr auto;
+            padding: 20px;
 
-    gap: 18px;
+            display: flex;
+            flex-direction: column;
 
-    align-items: center;
-}
+            align-items: center;
+            justify-content: center;
 
-.miniatura {
-    height: 70px;
+            text-align: center;
 
-    border-radius: 7px;
+            cursor: pointer;
 
-    background:
-        linear-gradient(135deg, #4c555b, #151a1e);
+            transition:
+                transform 0.2s,
+                border-color 0.2s,
+                background 0.2s;
+        }
 
-    display: grid;
-    place-items: center;
+        .tarjeta:hover {
+            transform:
+                translateY(-3px);
 
-    font-size: 35px;
-}
+            border-color:
+                var(--azul);
 
-.continuar small {
-    color: #8194a3;
-}
+            background:
+                #0d1b26;
+        }
 
-.continuar h4 {
-    margin: 7px 0 12px;
+        .tarjeta.destacada {
+            background:
+                linear-gradient(
+                    145deg,
+                    #0872cf,
+                    #064e8c
+                );
 
-    font-size: 15px;
-}
+            border-color:
+                #1598ff;
+        }
 
-.progreso {
-    height: 6px;
+        .tarjeta-icono {
+            font-size: 31px;
 
-    background: #18242d;
+            margin-bottom: 13px;
+        }
 
-    border-radius: 10px;
+        .tarjeta strong {
+            font-size: 15px;
+        }
 
-    overflow: hidden;
-}
+        .tarjeta small {
+            color: #a8b5c0;
 
-.progreso div {
-    width: 60%;
-    height: 100%;
+            margin-top: 6px;
 
-    background: var(--azul);
-}
+            line-height: 1.4;
+        }
 
-.boton {
-    border: 0;
-    border-radius: 7px;
 
-    padding: 11px 17px;
+        /* =====================================================
+           PANEL INFERIOR
+        ===================================================== */
 
-    background: var(--azul);
+        .dashboard {
+            display: grid;
 
-    color: white;
+            grid-template-columns:
+                1fr 1fr;
 
-    cursor: pointer;
-}
+            gap: 16px;
 
-/* =========================================================
-   CONSEJO
-========================================================= */
+            margin-top: 16px;
+        }
 
-.consejo {
-    margin-top: 14px;
+        .panel {
+            border: 1px solid #273641;
 
-    padding: 20px;
+            border-radius: 10px;
 
-    min-height: 120px;
+            background: #080e13;
 
-    background:
-        linear-gradient(90deg, #07121a, #0b1d2a);
+            overflow: hidden;
+        }
 
-    border: 1px solid #273641;
-    border-radius: 10px;
-}
+        .panel-cabecera {
+            display: flex;
 
-.consejo h3 {
-    margin-top: 0;
-}
+            justify-content:
+                space-between;
 
-.consejo blockquote {
-    border-left: 2px solid var(--azul);
+            align-items: center;
 
-    margin: 0;
+            padding: 15px 18px;
 
-    padding: 5px 18px;
+            border-bottom:
+                1px solid #202c35;
+        }
 
-    color: #d8e1e7;
+        .panel-cabecera h3 {
+            margin: 0;
 
-    line-height: 1.6;
-}
+            font-size: 17px;
+        }
 
-/* =========================================================
-   FOOTER
-========================================================= */
+        .panel-cabecera a {
+            color: var(--azul);
 
-.footer {
-    margin-top: 25px;
+            font-size: 13px;
 
-    border-top: 1px solid #273641;
+            cursor: pointer;
+        }
 
-    padding: 20px 5px 0;
 
-    display: flex;
+        /* =====================================================
+           ÚLTIMAS ACTUALIZACIONES
+        ===================================================== */
 
-    justify-content: space-between;
+        .actualizacion {
+            display: grid;
 
-    color: #8193a1;
+            grid-template-columns:
+                42px 1fr auto;
 
-    font-size: 12px;
-}
+            gap: 12px;
 
-/* =========================================================
-   MENÚ MÓVIL
-========================================================= */
+            align-items: center;
 
-.menu-movil {
-    display: none;
+            padding: 10px 18px;
 
-    background: transparent;
-    border: 0;
+            border-bottom:
+                1px solid #1b252d;
+        }
 
-    color: white;
+        .actualizacion:last-child {
+            border-bottom: 0;
+        }
 
-    font-size: 24px;
+        .tipo {
+            width: 37px;
+            height: 37px;
 
-    cursor: pointer;
-}
+            border-radius: 6px;
 
-/* =========================================================
-   RESPONSIVE
-========================================================= */
+            display: grid;
 
-@media (max-width: 1100px) {
+            place-items: center;
 
-    .accesos {
-        grid-template-columns: repeat(3, 1fr);
-    }
+            font-size: 11px;
 
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
+            font-weight: bold;
+        }
 
-    .hero {
-        grid-template-columns: 1fr;
-    }
+        .pdf {
+            background: #d83333;
+        }
 
-    .hero-visual {
-        display: none;
-    }
-}
+        .ppt {
+            background: #1378c8;
+        }
 
-@media (max-width: 800px) {
+        .xls {
+            background: #198b5b;
+        }
 
-    :root {
-        --header: 70px;
-    }
+        .link {
+            background: #6e3bd1;
+        }
 
-    .header {
-        grid-template-columns: auto 1fr auto;
-    }
+        .archivo {
+            font-size: 13px;
+        }
 
-    .marca {
-        border-right: 0;
+        .archivo small {
+            display: block;
 
-        padding: 0 14px;
-    }
+            color: #80919f;
 
-    .marca h1,
-    .marca small,
-    .logo {
-        display: none;
-    }
+            margin-top: 3px;
+        }
 
-    .menu-movil {
-        display: block;
-    }
+        .fecha {
+            color: #9aa9b5;
 
-    .buscador {
-        padding: 0 8px;
-    }
+            font-size: 11px;
+        }
 
-    .usuario span:last-child {
-        display: none;
-    }
 
-    .usuario {
-        padding: 0 12px;
-    }
+        /* =====================================================
+           CONTINUAR APRENDIENDO
+        ===================================================== */
 
-    .sidebar {
-        transform: translateX(-100%);
+        .continuar {
+            padding: 17px;
 
-        transition: transform .25s;
-    }
+            display: grid;
 
-    .sidebar.visible {
-        transform: translateX(0);
+            grid-template-columns:
+                100px 1fr auto;
 
-        box-shadow: 10px 0 30px rgba(0,0,0,.5);
-    }
+            gap: 18px;
 
-    .main {
-        left: 0;
-    }
+            align-items: center;
+        }
 
-    .contenido {
-        padding: 20px;
-    }
+        .miniatura {
+            height: 70px;
 
-    .accesos {
-        grid-template-columns: repeat(2, 1fr);
-    }
+            border-radius: 7px;
 
-    .caracteristicas {
-        flex-wrap: wrap;
-    }
-}
+            background:
+                linear-gradient(
+                    135deg,
+                    #4c555b,
+                    #151a1e
+                );
 
-@media (max-width: 520px) {
+            display: grid;
 
-    .accesos {
-        grid-template-columns: 1fr;
-    }
+            place-items: center;
 
-    .continuar {
-        grid-template-columns: 70px 1fr;
-    }
+            font-size: 35px;
+        }
 
-    .continuar .boton {
-        grid-column: 1 / -1;
-    }
+        .continuar small {
+            color: #8194a3;
+        }
 
-    .actualizacion {
-        grid-template-columns: 40px 1fr;
-    }
+        .continuar h4 {
+            margin: 7px 0 12px;
 
-    .fecha {
-        display: none;
-    }
+            font-size: 15px;
+        }
 
-    .footer {
-        flex-direction: column;
+        .progreso {
+            height: 6px;
 
-        gap: 8px;
-    }
-}
+            background: #18242d;
 
-</style>
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        .progreso div {
+            width: 60%;
+
+            height: 100%;
+
+            background:
+                var(--azul);
+        }
+
+        .boton {
+            border: 0;
+
+            border-radius: 7px;
+
+            padding: 11px 17px;
+
+            background:
+                var(--azul);
+
+            color: white;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           CONSEJO DEL DÍA
+        ===================================================== */
+
+        .consejo {
+            margin-top: 14px;
+
+            padding: 20px;
+
+            min-height: 120px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #07121a,
+                    #0b1d2a
+                );
+
+            border:
+                1px solid #273641;
+
+            border-radius: 10px;
+        }
+
+        .consejo h3 {
+            margin-top: 0;
+        }
+
+        .consejo blockquote {
+            border-left:
+                2px solid var(--azul);
+
+            margin: 0;
+
+            padding: 5px 18px;
+
+            color: #d8e1e7;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+            margin-top: 25px;
+
+            border-top:
+                1px solid #273641;
+
+            padding: 20px 5px 0;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            color: #8193a1;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           MENÚ MÓVIL
+        ===================================================== */
+
+        .menu-movil {
+            display: none;
+
+            background: transparent;
+
+            border: 0;
+
+            color: white;
+
+            font-size: 24px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .accesos {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .dashboard {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .hero {
+                grid-template-columns:
+                    1fr;
+
+                background-position:
+                    60% center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            :root {
+                --header: 70px;
+            }
+
+            .header {
+                grid-template-columns:
+                    auto 1fr auto;
+            }
+
+            .marca {
+                border-right: 0;
+
+                padding: 0 14px;
+            }
+
+            .marca h1,
+            .marca small,
+            .logo {
+                display: none;
+            }
+
+            .menu-movil {
+                display: block;
+            }
+
+            .buscador {
+                padding: 0 8px;
+            }
+
+            .usuario span:last-child {
+                display: none;
+            }
+
+            .usuario {
+                padding: 0 12px;
+            }
+
+            .sidebar {
+                transform:
+                    translateX(-100%);
+
+                transition:
+                    transform 0.25s;
+            }
+
+            .sidebar.visible {
+                transform:
+                    translateX(0);
+
+                box-shadow:
+                    10px 0 30px
+                    rgba(0, 0, 0, 0.5);
+            }
+
+            .main {
+                left: 0;
+            }
+
+            .contenido {
+                padding: 20px;
+            }
+
+            .accesos {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .caracteristicas {
+                flex-wrap: wrap;
+            }
+
+            .hero {
+                min-height: 380px;
+
+                background-position:
+                    65% center;
+            }
+
+            .hero-texto {
+                padding:
+                    30px 20px;
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .accesos {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .continuar {
+                grid-template-columns:
+                    70px 1fr;
+            }
+
+            .continuar .boton {
+                grid-column:
+                    1 / -1;
+            }
+
+            .actualizacion {
+                grid-template-columns:
+                    40px 1fr;
+            }
+
+            .fecha {
+                display: none;
+            }
+
+            .footer {
+                flex-direction:
+                    column;
+
+                gap: 8px;
+            }
+
+            .hero {
+                background-position:
+                    68% center;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<!-- =======================================================
+
+<!-- =========================================================
      CABECERA
-======================================================= -->
+========================================================= -->
 
 <header class="header">
 
+
     <div class="marca">
 
-        <button class="menu-movil"
-                onclick="alternarSidebar()">
+        <button
+            class="menu-movil"
+            onclick="alternarSidebar()">
             ☰
         </button>
 
-        <div class="logo">⚡</div>
+        <div class="logo">
+            ⚡
+        </div>
 
         <div>
-            <h1>Material para la Enseñanza</h1>
-            <small>APRENDER HOY, CONSTRUIR MAÑANA</small>
+
+            <h1>
+                Material para la Enseñanza
+            </h1>
+
+            <small>
+                APRENDER HOY, CONSTRUIR MAÑANA
+            </small>
+
         </div>
 
     </div>
 
 
-    <!-- PENDIENTE:
-         posteriormente conectaremos este buscador
-         a todos los documentos y contenidos -->
+    <!-- =====================================================
+         BUSCADOR
+
+         PENDIENTE:
+         Posteriormente buscará realmente en:
+         clases, guías, símbolos, normativa, etc.
+    ====================================================== -->
 
     <div class="buscador">
 
@@ -969,32 +1193,50 @@ url("img/estudiantes-electricidad.webp");
     </div>
 
 
-    <!-- PENDIENTE:
-         futura identificación docente/estudiante -->
+    <!-- =====================================================
+         USUARIO
+
+         PENDIENTE:
+         En el futuro podrá diferenciar
+         Docente / Estudiante.
+    ====================================================== -->
 
     <div class="usuario">
 
-        <div class="avatar">👤</div>
+        <div class="avatar">
+            👤
+        </div>
 
-        <span>Docente</span>
+        <span>
+            Docente
+        </span>
 
     </div>
 
 </header>
 
 
-<!-- =======================================================
+
+<!-- =========================================================
      MENÚ LATERAL
-======================================================= -->
+========================================================= -->
 
-<aside class="sidebar" id="sidebar">
+<aside
+    class="sidebar"
+    id="sidebar">
 
-    <button class="menu-item activo"
-            onclick="irInicio()">
 
-        <span class="icono">⌂</span>
+    <button
+        class="menu-item activo"
+        onclick="irInicio()">
 
-        <span class="nombre">Inicio</span>
+        <span class="icono">
+            ⌂
+        </span>
+
+        <span class="nombre">
+            Inicio
+        </span>
 
     </button>
 
@@ -1004,24 +1246,39 @@ url("img/estudiantes-electricidad.webp");
     </div>
 
 
-    <!-- IMECA -->
+
+    <!-- =====================================================
+         IMECA
+    ====================================================== -->
 
     <div>
 
-        <button class="asignatura-btn"
-                onclick="abrirAsignatura('imeca', this)">
+        <button
+            class="asignatura-btn"
+            onclick="abrirAsignatura('imeca', this)">
 
-            <span class="icono">⚙</span>
+            <span class="icono">
+                ⚙
+            </span>
 
-            <strong class="nombre">IMECA</strong>
+            <strong class="nombre">
+                IMECA
+            </strong>
 
-            <span class="anio">2027</span>
+            <span class="anio">
+                2027
+            </span>
 
-            <span class="flecha">›</span>
+            <span class="flecha">
+                ›
+            </span>
 
         </button>
 
-        <div class="meses" id="imeca">
+
+        <div
+            class="meses"
+            id="imeca">
 
             <button class="mes">Marzo</button>
             <button class="mes">Abril</button>
@@ -1038,24 +1295,39 @@ url("img/estudiantes-electricidad.webp");
     </div>
 
 
-    <!-- MMES -->
+
+    <!-- =====================================================
+         MMES
+    ====================================================== -->
 
     <div>
 
-        <button class="asignatura-btn"
-                onclick="abrirAsignatura('mmes', this)">
+        <button
+            class="asignatura-btn"
+            onclick="abrirAsignatura('mmes', this)">
 
-            <span class="icono">▣</span>
+            <span class="icono">
+                ▣
+            </span>
 
-            <strong class="nombre">MMES</strong>
+            <strong class="nombre">
+                MMES
+            </strong>
 
-            <span class="anio">2027</span>
+            <span class="anio">
+                2027
+            </span>
 
-            <span class="flecha">›</span>
+            <span class="flecha">
+                ›
+            </span>
 
         </button>
 
-        <div class="meses" id="mmes">
+
+        <div
+            class="meses"
+            id="mmes">
 
             <button class="mes">Marzo</button>
             <button class="mes">Abril</button>
@@ -1072,24 +1344,39 @@ url("img/estudiantes-electricidad.webp");
     </div>
 
 
-    <!-- IEI -->
+
+    <!-- =====================================================
+         IEI
+    ====================================================== -->
 
     <div>
 
-        <button class="asignatura-btn"
-                onclick="abrirAsignatura('iei', this)">
+        <button
+            class="asignatura-btn"
+            onclick="abrirAsignatura('iei', this)">
 
-            <span class="icono">⌘</span>
+            <span class="icono">
+                ⌘
+            </span>
 
-            <strong class="nombre">IEI</strong>
+            <strong class="nombre">
+                IEI
+            </strong>
 
-            <span class="anio">2027</span>
+            <span class="anio">
+                2027
+            </span>
 
-            <span class="flecha">›</span>
+            <span class="flecha">
+                ›
+            </span>
 
         </button>
 
-        <div class="meses" id="iei">
+
+        <div
+            class="meses"
+            id="iei">
 
             <button class="mes">Marzo</button>
             <button class="mes">Abril</button>
@@ -1105,24 +1392,39 @@ url("img/estudiantes-electricidad.webp");
     </div>
 
 
-    <!-- ISCEI -->
+
+    <!-- =====================================================
+         ISCEI
+    ====================================================== -->
 
     <div>
 
-        <button class="asignatura-btn"
-                onclick="abrirAsignatura('iscei', this)">
+        <button
+            class="asignatura-btn"
+            onclick="abrirAsignatura('iscei', this)">
 
-            <span class="icono">▤</span>
+            <span class="icono">
+                ▤
+            </span>
 
-            <strong class="nombre">ISCEI</strong>
+            <strong class="nombre">
+                ISCEI
+            </strong>
 
-            <span class="anio">2027</span>
+            <span class="anio">
+                2027
+            </span>
 
-            <span class="flecha">›</span>
+            <span class="flecha">
+                ›
+            </span>
 
         </button>
 
-        <div class="meses" id="iscei">
+
+        <div
+            class="meses"
+            id="iscei">
 
             <button class="mes">Marzo</button>
             <button class="mes">Abril</button>
@@ -1136,25 +1438,29 @@ url("img/estudiantes-electricidad.webp");
         </div>
 
     </div>
+
 
 
     <div class="separador"></div>
 
 
-    <!-- ===================================================
+
+    <!-- =====================================================
          RECURSOS
-    =================================================== -->
+    ====================================================== -->
 
     <div class="menu-titulo">
         RECURSOS
     </div>
 
-    <!-- PENDIENTE: conectar biblioteca -->
 
-    <button class="menu-item"
-            onclick="funcionPendiente('Biblioteca de recursos')">
+    <button
+        class="menu-item"
+        onclick="funcionPendiente('Biblioteca de recursos')">
 
-        <span class="icono">▢</span>
+        <span class="icono">
+            ▢
+        </span>
 
         <span class="nombre">
             Biblioteca de recursos
@@ -1163,12 +1469,13 @@ url("img/estudiantes-electricidad.webp");
     </button>
 
 
-    <!-- PENDIENTE: biblioteca de símbolos -->
+    <button
+        class="menu-item"
+        onclick="funcionPendiente('Símbolos eléctricos')">
 
-    <button class="menu-item"
-            onclick="funcionPendiente('Símbolos eléctricos')">
-
-        <span class="icono">⊕</span>
+        <span class="icono">
+            ⊕
+        </span>
 
         <span class="nombre">
             Símbolos eléctricos
@@ -1177,12 +1484,13 @@ url("img/estudiantes-electricidad.webp");
     </button>
 
 
-    <!-- PENDIENTE: normativa RIC / Decreto 8 / NFPA -->
+    <button
+        class="menu-item"
+        onclick="funcionPendiente('Normativa')">
 
-    <button class="menu-item"
-            onclick="funcionPendiente('Normativa')">
-
-        <span class="icono">▤</span>
+        <span class="icono">
+            ▤
+        </span>
 
         <span class="nombre">
             Normativa
@@ -1191,24 +1499,27 @@ url("img/estudiantes-electricidad.webp");
     </button>
 
 
+
     <div class="separador"></div>
 
 
-    <!-- ===================================================
+
+    <!-- =====================================================
          HERRAMIENTAS
-    =================================================== -->
+    ====================================================== -->
 
     <div class="menu-titulo">
         HERRAMIENTAS
     </div>
 
-    <!-- PENDIENTE:
-         aquí conectaremos la calculadora eléctrica -->
 
-    <button class="menu-item"
-            onclick="funcionPendiente('Calculadora eléctrica')">
+    <button
+        class="menu-item"
+        onclick="funcionPendiente('Calculadora eléctrica')">
 
-        <span class="icono">▦</span>
+        <span class="icono">
+            ▦
+        </span>
 
         <span class="nombre">
             Calculadora eléctrica
@@ -1216,38 +1527,57 @@ url("img/estudiantes-electricidad.webp");
 
     </button>
 
+
 </aside>
 
 
-<!-- =======================================================
-     CONTENIDO PRINCIPAL
-======================================================= -->
 
-<main class="main" id="main">
+<!-- =========================================================
+     CONTENIDO PRINCIPAL
+========================================================= -->
+
+<main
+    class="main"
+    id="main">
+
 
 <div class="contenido">
 
-    <div class="breadcrumb"
-         id="breadcrumb">
+
+
+    <!-- =====================================================
+         MIGAS DE PAN
+    ====================================================== -->
+
+    <div
+        class="breadcrumb"
+        id="breadcrumb">
 
         Inicio ›
 
     </div>
 
 
-    <!-- ===================================================
-         HERO
-    =================================================== -->
+
+    <!-- =====================================================
+         BANNER PRINCIPAL
+    ====================================================== -->
 
     <section class="hero">
 
+
         <div class="hero-texto">
 
-            <h2>Bienvenido</h2>
+
+            <h2>
+                Bienvenido
+            </h2>
+
 
             <h3>
                 a tu plataforma de aprendizaje
             </h3>
+
 
             <p>
                 Aquí encontrarás material para la enseñanza
@@ -1256,11 +1586,15 @@ url("img/estudiantes-electricidad.webp");
             </p>
 
 
+
             <div class="caracteristicas">
+
 
                 <div class="caracteristica">
 
-                    <span class="ico">▣</span>
+                    <span class="ico">
+                        ▣
+                    </span>
 
                     Material actualizado
 
@@ -1269,7 +1603,9 @@ url("img/estudiantes-electricidad.webp");
 
                 <div class="caracteristica">
 
-                    <span class="ico">♟</span>
+                    <span class="ico">
+                        ♟
+                    </span>
 
                     Enfoque práctico
 
@@ -1278,33 +1614,37 @@ url("img/estudiantes-electricidad.webp");
 
                 <div class="caracteristica">
 
-                    <span class="ico">▥</span>
+                    <span class="ico">
+                        ▥
+                    </span>
 
                     Apoyo al aprendizaje
 
                 </div>
 
+
             </div>
 
-        </div>
-
-
-        <!-- PENDIENTE:
-             aquí irá visualmente la imagen
-             de los estudiantes mirando el plano -->
-
-        <div class="hero-visual">
-
-            ⚡
 
         </div>
+
+
+        <!--
+        Esta zona permanece libre porque
+        aquí se visualizan los estudiantes
+        de estudiantes-electricidad.png
+        -->
+
+        <div class="hero-visual"></div>
+
 
     </section>
 
 
-    <!-- ===================================================
+
+    <!-- =====================================================
          ACCESOS RÁPIDOS
-    =================================================== -->
+    ====================================================== -->
 
     <h2 class="seccion-titulo">
         Accesos rápidos
@@ -1313,8 +1653,10 @@ url("img/estudiantes-electricidad.webp");
 
     <section class="accesos">
 
-        <div class="tarjeta destacada"
-             onclick="enfocarAsignaturas()">
+
+        <div
+            class="tarjeta destacada"
+            onclick="enfocarAsignaturas()">
 
             <div class="tarjeta-icono">
                 🎓
@@ -1325,14 +1667,16 @@ url("img/estudiantes-electricidad.webp");
             </strong>
 
             <small>
-                Explora el material por curso
+                Explora el material por asignatura
             </small>
 
         </div>
 
 
-        <div class="tarjeta"
-             onclick="enfocarBuscador()">
+
+        <div
+            class="tarjeta"
+            onclick="enfocarBuscador()">
 
             <div class="tarjeta-icono">
                 ⌕
@@ -1349,8 +1693,10 @@ url("img/estudiantes-electricidad.webp");
         </div>
 
 
-        <div class="tarjeta"
-             onclick="funcionPendiente('Calculadora eléctrica')">
+
+        <div
+            class="tarjeta"
+            onclick="funcionPendiente('Calculadora eléctrica')">
 
             <div class="tarjeta-icono">
                 🛠
@@ -1367,8 +1713,10 @@ url("img/estudiantes-electricidad.webp");
         </div>
 
 
-        <div class="tarjeta"
-             onclick="funcionPendiente('Biblioteca')">
+
+        <div
+            class="tarjeta"
+            onclick="funcionPendiente('Biblioteca')">
 
             <div class="tarjeta-icono">
                 📖
@@ -1385,8 +1733,10 @@ url("img/estudiantes-electricidad.webp");
         </div>
 
 
-        <div class="tarjeta"
-             onclick="funcionPendiente('Normativa')">
+
+        <div
+            class="tarjeta"
+            onclick="funcionPendiente('Normativa')">
 
             <div class="tarjeta-icono">
                 🛡
@@ -1402,19 +1752,28 @@ url("img/estudiantes-electricidad.webp");
 
         </div>
 
+
     </section>
 
 
-    <!-- ===================================================
-         DASHBOARD INFERIOR
-    =================================================== -->
+
+    <!-- =====================================================
+         ZONA INFERIOR
+    ====================================================== -->
 
     <section class="dashboard">
 
 
-        <!-- ÚLTIMAS ACTUALIZACIONES -->
+
+        <!-- =================================================
+             ÚLTIMAS ACTUALIZACIONES
+
+             PENDIENTE:
+             Posteriormente se generarán automáticamente.
+        ================================================== -->
 
         <div class="panel">
+
 
             <div class="panel-cabecera">
 
@@ -1429,9 +1788,6 @@ url("img/estudiantes-electricidad.webp");
             </div>
 
 
-            <!-- PENDIENTE:
-                 estos datos serán generados automáticamente
-                 según los archivos agregados -->
 
             <div class="actualizacion">
 
@@ -1454,6 +1810,7 @@ url("img/estudiantes-electricidad.webp");
                 </div>
 
             </div>
+
 
 
             <div class="actualizacion">
@@ -1479,6 +1836,7 @@ url("img/estudiantes-electricidad.webp");
             </div>
 
 
+
             <div class="actualizacion">
 
                 <div class="tipo xls">
@@ -1500,6 +1858,7 @@ url("img/estudiantes-electricidad.webp");
                 </div>
 
             </div>
+
 
 
             <div class="actualizacion">
@@ -1524,14 +1883,29 @@ url("img/estudiantes-electricidad.webp");
 
             </div>
 
+
         </div>
 
 
-        <!-- COLUMNA DERECHA -->
+
+        <!-- =================================================
+             COLUMNA DERECHA
+        ================================================== -->
 
         <div>
 
+
+
+            <!-- =============================================
+                 CONTINUAR APRENDIENDO
+
+                 PENDIENTE:
+                 Posteriormente podrá recordar
+                 el último contenido visitado.
+            ============================================== -->
+
             <div class="panel">
+
 
                 <div class="panel-cabecera">
 
@@ -1539,20 +1913,21 @@ url("img/estudiantes-electricidad.webp");
                         Continuar aprendiendo
                     </h3>
 
-                    <a>→</a>
+                    <a>
+                        →
+                    </a>
 
                 </div>
 
 
-                <!-- PENDIENTE:
-                     posteriormente podremos guardar
-                     el último contenido visitado -->
 
                 <div class="continuar">
+
 
                     <div class="miniatura">
                         ⚙
                     </div>
+
 
                     <div>
 
@@ -1564,272 +1939,421 @@ url("img/estudiantes-electricidad.webp");
                             Clase 05 · Motores eléctricos
                         </h4>
 
+
                         <div class="progreso">
+
                             <div></div>
+
                         </div>
 
                     </div>
 
-                    <button class="boton"
-                            onclick="funcionPendiente('Continuar clase')">
+
+                    <button
+                        class="boton"
+                        onclick="funcionPendiente('Continuar clase')">
 
                         Continuar
 
                     </button>
 
+
                 </div>
+
 
             </div>
 
 
-            <!-- CONSEJO -->
+
+            <!-- =============================================
+                 CONSEJO DEL DÍA
+            ============================================== -->
 
             <div class="consejo">
+
 
                 <h3>
                     💡 Consejo del día
                 </h3>
 
+
                 <blockquote>
+
                     “El aprendizaje técnico se fortalece
                     cuando el conocimiento se transforma
                     en experiencia.”
+
                 </blockquote>
+
 
             </div>
 
+
         </div>
+
 
     </section>
 
 
-    <!-- ===================================================
-         FOOTER
-    =================================================== -->
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+    ====================================================== -->
 
     <footer class="footer">
 
-        <div>
-            Liceo Industrial Bicentenario Agustín Edward Ross
-            &nbsp; | &nbsp;
-            Especialidad de Electricidad
-        </div>
 
         <div>
-            2027 · Santiago, Chile
+
+            Liceo Industrial Bicentenario
+            Agustín Edward Ross
+
+            &nbsp; | &nbsp;
+
+            Especialidad de Electricidad
+
         </div>
+
+
+        <div>
+
+            2027 · Santiago, Chile
+
+        </div>
+
 
     </footer>
 
+
 </div>
+
 
 </main>
 
 
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
 <script>
 
-/* =========================================================
-   ASIGNATURAS DESPLEGABLES
-========================================================= */
 
-function abrirAsignatura(id, boton) {
+    /* =====================================================
+       ABRIR Y CERRAR ASIGNATURAS
+    ===================================================== */
 
-    const submenu =
-        document.getElementById(id);
-
-    const yaAbierto =
-        submenu.classList.contains("abierto");
+    function abrirAsignatura(id, boton) {
 
 
-    /* Cerrar todos */
-
-    document
-        .querySelectorAll(".meses")
-        .forEach(menu => {
-
-            menu.classList.remove("abierto");
-
-        });
+        const submenu =
+            document.getElementById(id);
 
 
-    document
-        .querySelectorAll(".flecha")
-        .forEach(flecha => {
-
-            flecha.style.transform =
-                "rotate(0deg)";
-
-        });
+        const yaAbierto =
+            submenu.classList.contains("abierto");
 
 
-    /* Abrir seleccionado */
 
-    if (!yaAbierto) {
+        /* Cerrar todos los submenús */
 
-        submenu.classList.add("abierto");
+        document
+            .querySelectorAll(".meses")
+            .forEach(menu => {
 
-        boton.querySelector(".flecha")
-            .style.transform =
-            "rotate(90deg)";
+                menu.classList.remove("abierto");
+
+            });
+
+
+
+        /* Restaurar flechas */
+
+        document
+            .querySelectorAll(".flecha")
+            .forEach(flecha => {
+
+                flecha.style.transform =
+                    "rotate(0deg)";
+
+            });
+
+
+
+        /* Abrir el seleccionado */
+
+        if (!yaAbierto) {
+
+
+            submenu
+                .classList
+                .add("abierto");
+
+
+            boton
+                .querySelector(".flecha")
+                .style.transform =
+                "rotate(90deg)";
+
+
+        }
+
 
     }
 
-}
 
 
-/* =========================================================
-   SIDEBAR MÓVIL
-========================================================= */
+    /* =====================================================
+       MENÚ EN CELULAR
+    ===================================================== */
 
-function alternarSidebar() {
+    function alternarSidebar() {
 
-    document
-        .getElementById("sidebar")
-        .classList
-        .toggle("visible");
-
-}
-
-
-/* =========================================================
-   INICIO
-========================================================= */
-
-function irInicio() {
-
-    document
-        .getElementById("main")
-        .scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-}
-
-
-/* =========================================================
-   BUSCADOR
-   DEMOSTRACIÓN
-========================================================= */
-
-function enfocarBuscador() {
-
-    document
-        .getElementById("buscador")
-        .focus();
-
-}
-
-
-function buscarDemo() {
-
-    /*
-    =====================================================
-    PENDIENTE:
-
-    Aquí construiremos el buscador real.
-
-    Deberá buscar en:
-
-    - asignaturas
-    - meses
-    - clases
-    - guías
-    - evaluaciones
-    - símbolos
-    - normativa
-    - biblioteca
-    - herramientas
-    =====================================================
-    */
-
-}
-
-
-/* =========================================================
-   ACCESO ASIGNATURAS
-========================================================= */
-
-function enfocarAsignaturas() {
-
-    if (window.innerWidth <= 800) {
 
         document
             .getElementById("sidebar")
             .classList
-            .add("visible");
+            .toggle("visible");
+
 
     }
 
-}
 
 
-/* =========================================================
-   FUNCIONES FUTURAS
-========================================================= */
+    /* =====================================================
+       VOLVER AL INICIO
+    ===================================================== */
 
-function funcionPendiente(nombre) {
-
-    alert(
-        nombre +
-        "\n\nEsta función está preparada para incorporarse en una próxima etapa."
-    );
-
-}
+    function irInicio() {
 
 
-/* =========================================================
-   CLIC EN MESES
-========================================================= */
+        document
+            .getElementById("main")
+            .scrollTo({
 
-document
-    .querySelectorAll(".mes")
-    .forEach(mes => {
+                top: 0,
 
-        mes.addEventListener(
-            "click",
-            function () {
+                behavior: "smooth"
 
-                const asignatura =
-                    this
-                    .closest("div")
-                    .id
-                    .toUpperCase();
-
-                const nombreMes =
-                    this.textContent;
+            });
 
 
-                document
-                    .getElementById("breadcrumb")
-                    .textContent =
-                    "Inicio  ›  " +
-                    asignatura +
-                    "  ›  " +
-                    nombreMes;
+        document
+            .getElementById("breadcrumb")
+            .textContent =
+            "Inicio ›";
 
 
-                /*
-                ============================================
-                PENDIENTE:
+    }
 
-                Aquí cargaremos el contenido real del mes:
 
-                - clases
-                - guías
-                - presentaciones
-                - actividades
-                - evaluaciones
-                - material complementario
-                ============================================
-                */
 
-            }
+    /* =====================================================
+       BUSCADOR
+    ===================================================== */
+
+    function enfocarBuscador() {
+
+
+        document
+            .getElementById("buscador")
+            .focus();
+
+
+    }
+
+
+
+    function buscarDemo() {
+
+
+        /*
+        ==================================================
+
+        PENDIENTE:
+
+        Aquí programaremos el buscador global.
+
+        Buscará en:
+
+        - Asignaturas
+        - Meses
+        - Clases
+        - Guías
+        - Presentaciones
+        - Evaluaciones
+        - Símbolos eléctricos
+        - Normativa
+        - Biblioteca
+        - Herramientas
+
+        ==================================================
+        */
+
+
+    }
+
+
+
+    /* =====================================================
+       MOSTRAR ASIGNATURAS EN CELULAR
+    ===================================================== */
+
+    function enfocarAsignaturas() {
+
+
+        if (window.innerWidth <= 800) {
+
+
+            document
+                .getElementById("sidebar")
+                .classList
+                .add("visible");
+
+
+        }
+
+
+    }
+
+
+
+    /* =====================================================
+       FUNCIONES AÚN NO IMPLEMENTADAS
+    ===================================================== */
+
+    function funcionPendiente(nombre) {
+
+
+        alert(
+
+            nombre +
+
+            "\n\nEsta función está preparada para incorporarse en una próxima etapa."
+
         );
 
-    });
+
+    }
+
+
+
+    /* =====================================================
+       SELECCIÓN DE MESES
+    ===================================================== */
+
+    document
+        .querySelectorAll(".mes")
+        .forEach(mes => {
+
+
+            mes.addEventListener(
+                "click",
+                function () {
+
+
+                    /* Quitar selección anterior */
+
+                    document
+                        .querySelectorAll(".mes")
+                        .forEach(elemento => {
+
+                            elemento
+                                .classList
+                                .remove("seleccionado");
+
+                        });
+
+
+
+                    /* Marcar mes actual */
+
+                    this
+                        .classList
+                        .add("seleccionado");
+
+
+
+                    /* Obtener asignatura */
+
+                    const asignatura =
+                        this
+                        .parentElement
+                        .id
+                        .toUpperCase();
+
+
+
+                    /* Obtener mes */
+
+                    const nombreMes =
+                        this
+                        .textContent;
+
+
+
+                    /* Actualizar ruta */
+
+                    document
+                        .getElementById("breadcrumb")
+                        .textContent =
+
+                        "Inicio  ›  " +
+
+                        asignatura +
+
+                        "  ›  " +
+
+                        nombreMes;
+
+
+
+                    /*
+                    =========================================
+
+                    PENDIENTE:
+
+                    Aquí aparecerá el contenido real:
+
+                    ASIGNATURA
+                        ↓
+                    MES
+                        ↓
+                    CLASES
+                    GUÍAS
+                    PRESENTACIONES
+                    ACTIVIDADES
+                    EVALUACIONES
+                    MATERIAL COMPLEMENTARIO
+
+                    =========================================
+                    */
+
+
+                    /* En celular cerrar menú */
+
+                    if (window.innerWidth <= 800) {
+
+
+                        document
+                            .getElementById("sidebar")
+                            .classList
+                            .remove("visible");
+
+
+                    }
+
+
+                }
+            );
+
+
+        });
+
 
 </script>
 
+
 </body>
+
 </html>
